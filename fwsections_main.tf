@@ -1,6 +1,6 @@
 locals {
   # Read json files and append them into a single directory
-  inputfiles = [for f in fileset(path.module, "*_rules.json") : jsondecode(file(f))]
+  inputfiles = [for f in fileset(path.module, "JsonObjects/firewallrules/*_rules.json") : jsondecode(file(f))]
 
   # Filter and append distinct security group contents from JSON file
   security_group_resources = distinct(flatten([for item in local.inputfiles : item.security_group_resources]))
@@ -14,7 +14,7 @@ locals {
 
 # create security group
 module "fw_sections" {
-  source               = "rules"
+  source               = "modules/rules"
   data_sg_resources    = local.security_group_resources
   data_srv_resources   = local.service_resources
   fw_section_resources = local.fw_section_resources
