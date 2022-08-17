@@ -1,0 +1,30 @@
+{
+  "c361273612761dh34234ha": {
+    "srv_name": "tcp_c361273612761dh34234ha",
+    "description": "Terraform provisioned service",
+    "l4_port_set_entry": [
+      {
+        "display_name": "tcp_c361273612761dh34234ha",
+        "description": "Terraform provisioned service",
+        "protocol": "TCP",
+        "ports": [
+          "17501",
+          "17524-17525",
+          "17534-17535",
+          "27501",
+          "27701",
+          "27724-27725",
+          "37701",
+          "37724-37725"
+        ]
+      }
+    ],
+    "icmp_entry": [],
+    "tag": [
+      {
+        "tag_scope": "HashValue",
+        "tag_value": "c361273612761dh34234ha"
+      }
+    ]
+  }
+}

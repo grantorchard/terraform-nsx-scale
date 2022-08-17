@@ -1,0 +1,16 @@
+{
+  "ip_hash": {
+    "ipaddress_list": [
+      {
+        "ipaddr": [
+          "10.16.136.146",
+          "10.16.72.78",
+          "10.16.72.79"
+        ]
+      }
+    ],
+    "tag": [],
+    "conditions": [],
+    "conjunction": []
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "sg3_a00012_waz_npr": {
+    "ipaddress_list": [
+      {
+        "ipaddr": [
+          "10.100.136.146",
+          "10.100.72.78",
+          "10.100.72.79"
+        ]
+      }
+    ],
+    "tag": [],
+    "conditions": [
+      {
+        "key": "Tag",
+        "member_type": "VirtualMachine",
+        "operator": "EQUALS",
+        "value": "vm_a00012"
+      }
+    ],
+    "conjunction": [
+      "OR"
+    ]
+  }
+}

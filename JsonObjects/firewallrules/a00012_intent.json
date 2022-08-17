@@ -1,0 +1,44 @@
+{
+  "templates": {
+    "app-template": {
+      "platform": "obm",
+      "domain": "isd",
+      "zone": "waz",
+      "prefix": "sg3",
+      "appId": "a0012",
+      "tier": "app",
+      "environment": "npr"
+    },
+    "db-template": {
+      "platform": "obm",
+      "domain": "isd",
+      "zone": "dsz",
+      "prefix": "sg3",
+      "appId": "a00012",
+      "tier": "db",
+      "environment": "npr"
+    },
+    "LB-SNAT-template": {
+      "platform": "obm",
+      "domain": "isd",
+      "zone": "waz",
+      "prefix": "ip",
+      "appId": "a00012",
+      "tier": "app",
+      "environment": "npr",
+      "ipAddressList": "10.100.136.146;10.100.72.78;10.100.72.79"
+    }
+  },
+  "ruleset": [
+    {
+      "source": {
+        "template": "app-template"
+      },
+      "destination": {
+        "template": "app-template"
+      },
+      "portSet": "any",
+      "comment": "web to web on any port"
+    }
+  ]
+}

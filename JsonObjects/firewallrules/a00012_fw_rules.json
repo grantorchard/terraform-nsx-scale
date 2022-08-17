@@ -1,0 +1,35 @@
+{
+  "security_group_resources": [
+    "ip_hash",
+    "sg3_a00012_waz_npr"
+  ],
+  "service_resources": [
+    "tcp_c361273612761dh34234ha"
+  ],
+  "fw_section": [
+    {
+      "section_name": "a00012_npr",
+      "insert_before": "c4420709-140b-4349-9265-60effb7a0ade",
+      "description": "F5 provisioned by Terraform",
+      "applied_target": "3a6549c9-2d8c-47c6-aa08-19475ee4a118",
+      "tag": [],
+      "rules": [
+        {
+          "display_name": "1: a00012_npr",
+          "description": "1: a00012_npr",
+          "action": "ALLOW",
+          "direction": "IN",
+          "ip_protocol": "IPV4",
+          "logged": "true",
+          "disabled": "false",
+          "source": [
+            "sg3_a00892_lmz_prd"
+          ],
+          "destination": [
+            "sg3_a00012_waz_npr"
+          ]
+        }
+      ]
+    }
+  ]
+}
