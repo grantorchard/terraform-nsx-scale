@@ -1,5 +1,5 @@
 locals {
-	group_files = fileset(path.module, "./*.json")
+	group_files = fileset(path.module, "./files/*.json")
 
   // write out the contents of all of the files in the group_files local variable.
   raw_inputs = [for v in local.group_files : jsondecode(file(v))]
