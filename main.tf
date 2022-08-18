@@ -1,15 +1,20 @@
+locals {
+	group_files = fileset(path.module, "./*.json")
+
+  // write out the contents of all of the files in the group_files local variable.
+  raw_inputs = [for v in local.group_files : jsondecode(file(v))]
+}
+
 module "initial_test" {
-	count = var.spawn
+	for_each = { for v in local.raw_inputs: v.display_name => v }
 	source = "./modules"
 
-	display_name = "app-id-${sum([123456, count.index])}"
-	protocol = "tcp"
-	destination_ports = [
-		443
-	]
-	destinations = ["10.0.0.0/24"]
-	sources = ["192.168.20.0/24"]
-	action = "allow"
+	display_name = each.value.display_name
+	protocol = each.value.protocol
+	destination_ports = each.value.destination_ports
+	destinations = each.value.destinations
+	sources = each.value.sources
+	action = upper(each.value.action)
 }
 
 
