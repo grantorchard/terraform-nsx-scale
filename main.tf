@@ -14,27 +14,27 @@ module "initial_test" {
 
 
 
-resource "nsxt_policy_group" "destinations" {
-  display_name = "destination"
-  description  = ""
+# resource "nsxt_policy_group" "destinations" {
+#   display_name = "destination"
+#   description  = ""
 
-  criteria {
-    ipaddress_expression {
-      ip_addresses = ["192.168.1.20"]
-    }
-  }
-}
+#   criteria {
+#     ipaddress_expression {
+#       ip_addresses = ["192.168.1.20"]
+#     }
+#   }
+# }
 
-resource "nsxt_policy_group" "sources" {
-  display_name = "source"
-  description  = ""
+# resource "nsxt_policy_group" "sources" {
+#   display_name = "source"
+#   description  = ""
 
-  criteria {
-    ipaddress_expression {
-      ip_addresses = ["192.168.1.10"]
-    }
-  }
-}
+#   criteria {
+#     ipaddress_expression {
+#       ip_addresses = ["192.168.1.10"]
+#     }
+#   }
+# }
 
 
 
