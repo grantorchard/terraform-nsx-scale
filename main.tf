@@ -7,9 +7,33 @@ module "initial_test" {
 	destination_ports = [
 		443
 	]
-	destinations = ["10.0.0.0/24"]
-	sources = ["192.168.20.0/24"]
+	destinations = nsxt_policy_group.destinations.display_name
+	sources = nsxt_policy_group.sources.display_name
 	action = "allow"
+}
+
+
+
+resource "nsxt_policy_group" "destinations" {
+  display_name = "destination"
+  description  = ""
+
+  criteria {
+    ipaddress_expression {
+      ip_addresses = ["192.168.1.20"]
+    }
+  }
+}
+
+resource "nsxt_policy_group" "sources" {
+  display_name = "source"
+  description  = ""
+
+  criteria {
+    ipaddress_expression {
+      ip_addresses = ["192.168.1.10"]
+    }
+  }
 }
 
 
