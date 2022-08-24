@@ -1,41 +1,53 @@
-resource "nsxt_policy_service" "this" {
-  description  = var.description
-  display_name = var.display_name
+# resource "nsxt_policy_service" "this" {
+#   description  = var.description
+#   display_name = var.display_name
 
-  l4_port_set_entry {
-    display_name      = var.display_name
-    description       = var.description
-    protocol          = upper(var.protocol)
-    destination_ports = var.destination_ports
-  }
+#   l4_port_set_entry {
+#     display_name      = var.display_name
+#     description       = var.description
+#     protocol          = upper(var.protocol)
+#     destination_ports = var.destination_ports
+#   }
 
-  tag {
-    scope = "color"
-    tag   = "pink"
-  }
+#   tag {
+#     scope = "color"
+#     tag   = "pink"
+#   }
+# }
+
+data "nsxt_policy_service" "this" {
+	display_name = ""
 }
 
-resource "nsxt_policy_group" "destinations" {
-  display_name = "destination-${var.display_name}"
-  description  = var.description
-
-  criteria {
-    ipaddress_expression {
-      ip_addresses = var.destinations
-    }
-  }
+data "nsxt_policy_group" "destinations" {
+	display_name = var.destinations
 }
 
-resource "nsxt_policy_group" "sources" {
-  display_name = "source-${var.display_name}"
-  description  = var.description
+# resource "nsxt_policy_group" "destinations" {
+#   display_name = "destination-${var.display_name}"
+#   description  = var.description
 
-  criteria {
-    ipaddress_expression {
-      ip_addresses = var.sources
-    }
-  }
+#   criteria {
+#     ipaddress_expression {
+#       ip_addresses = var.destinations
+#     }
+#   }
+# }
+
+data "nsxt_policy_group" "sources" {
+	display_name = var.destinations
 }
+
+# resource "nsxt_policy_group" "sources" {
+#   display_name = "source-${var.display_name}"
+#   description  = var.description
+
+#   criteria {
+#     ipaddress_expression {
+#       ip_addresses = var.sources
+#     }
+#   }
+# }
 
 resource "nsxt_policy_security_policy" "this" {
 	display_name = var.display_name
@@ -46,7 +58,7 @@ resource "nsxt_policy_security_policy" "this" {
 	stateful = true
 	tcp_strict = false
 	scope        = [
-		nsxt_policy_group.sources.path
+		data.nsxt_policy_group.sources.path
 	]
 
 	tag {
@@ -57,19 +69,19 @@ resource "nsxt_policy_security_policy" "this" {
 	rule {
 		display_name = var.display_name
 		source_groups = [
-			nsxt_policy_group.sources.path
+			data.nsxt_policy_group.sources.path
 		]
 		destination_groups = [
-			nsxt_policy_group.destinations.path
+			data.nsxt_policy_group.destinations.path
 		]
 		services = [
-			nsxt_policy_service.this.path
+			data.nsxt_policy_service.this.path
 		]
 		disabled = false
 		action = upper(var.action)
 		logged = true
 		scope = [
-			nsxt_policy_group.sources.path
+			data.nsxt_policy_group.sources.path
 		]
 	}
 }
