@@ -12,10 +12,10 @@ variable "destination_ports" {
 	type = list(number)
 }
 variable "destinations" {
-	type = list(string)
+	type = string
 }
 variable "sources" {
-	type = list(string)
+	type = string
 }
 variable "action" {
 	type = string

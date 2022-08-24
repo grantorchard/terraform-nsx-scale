@@ -16,7 +16,7 @@
 # }
 
 data "nsxt_policy_service" "this" {
-	display_name = ""
+	display_name = "DNS"
 }
 
 data "nsxt_policy_group" "destinations" {
