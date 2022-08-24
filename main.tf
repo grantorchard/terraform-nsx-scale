@@ -7,8 +7,8 @@ module "initial_test" {
 	destination_ports = [
 		443
 	]
-	destinations = nsxt_policy_group.destinations.display_name
-	sources = nsxt_policy_group.sources.display_name
+	destinations = "destination"
+	sources = "source"
 	action = "allow"
 }
 
