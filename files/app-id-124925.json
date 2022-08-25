@@ -1,1 +1,0 @@
-{"action":"allow","destination_ports":[443],"destinations":["10.0.0.0/24"],"display_name":"app-id-124925","protocol":"tcp","sources":["192.168.20.0/24"]}
