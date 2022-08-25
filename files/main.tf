@@ -1,7 +1,7 @@
 
 
 resource "local_file" "foo" {
-		count = 4000
+		count = 2000
     content  = jsonencode({
 			display_name = "app-id-${sum([123456, count.index])}",
 			protocol = "tcp",
