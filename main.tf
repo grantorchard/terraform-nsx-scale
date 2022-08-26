@@ -13,8 +13,11 @@ module "security-group" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "4.13.0"
 
-	rules = "${each.value.display_name}-${join(",", each.value.ports)}"
-	"zookeeper-2888-tcp": [ 2888, 2888, "tcp", "Zookeeper" ]
+	vpc_id = "vpc-01488b5e1568e0020"
+
+	ingress_rules = ["mysql-tcp"]
+
+	ingress_cidr_blocks = each.value.sources
 }
 
 
