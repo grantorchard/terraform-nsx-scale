@@ -15,8 +15,8 @@ module "security-group" {
 
 	vpc_id = "vpc-01488b5e1568e0020"
 
+	name = each.value.display_name
 	ingress_rules = ["mysql-tcp"]
-
 	ingress_cidr_blocks = each.value.sources
 }
 
